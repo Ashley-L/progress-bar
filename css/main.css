@@ -1,0 +1,71 @@
+/*Progress bar*/
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #732D3B;
+    /* width: 0%; */
+    height: 100%;
+    max-height: 8px;
+
+}
+
+/*Doc styling*/
+body {
+    font-family: 'Courier New', Courier, monospace;
+    /* background-color: #732D3B; */
+}
+.container {
+    margin: 0 auto;
+    padding: 0 5em;
+    max-width: 1000px;
+    background-color: white;
+}
+.intro {
+    padding-bottom: 1em;
+}
+.intro p {
+    padding-bottom: 1em;
+}
+section, article {
+    padding: .5em;
+}
+h1 {
+    text-align: center;
+}
+strong {
+    font-weight: 600;
+}
+em {
+    font-style: italic;
+}
+.title {
+    padding-top: 1em;
+    font-weight: 600;
+    font-size: 1.5em;
+}
+.subtitle {
+    font-weight: 600;
+    font-size: 1.2em;
+    padding-bottom: 1.5em;
+    text-align: center;
+}
+.speaker {
+    font-weight: 600;
+    /* font-size: 1.2em; */
+    padding-bottom: .25em;
+    text-transform: uppercase;
+}
+.scene {
+    padding: 1em 0;
+    max-width: 550px;
+    margin: 0 auto;
+}
+.dialogue {
+    margin: 0 auto;
+    max-width: 300px;
+}
+.scene-minor {
+    padding: 1em 0;
+}
+
