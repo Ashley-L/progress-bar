@@ -1,33 +1,66 @@
 /*Progress bar*/
-.progress-bar {
+.bar {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #732D3B;
-    /* width: 0%; */
+    background-color: rgba(211, 125, 12, 0.7);
+    width: 100%;
     height: 100%;
-    max-height: 8px;
-
+    max-height: 2em;
 }
+.bar:hover {
+    background-color: rgb(211, 125, 12);
+}
+
+.progress {
+    background-color: rgb(0, 95, 139);
+    width: 0%;
+    height: 100%;
+}
+
+.title-copy {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 1em;
+    position: absolute;
+    line-height: 2;
+    font-weight: 600;
+    font-size: 1em;
+    /* top: 0;
+    left: 0; */
+    /* display: flex;
+    align-self: center; */
+    opacity: 0;
+}
+
+
+
+
 
 /*Doc styling*/
 body {
     font-family: 'Courier New', Courier, monospace;
     /* background-color: #732D3B; */
 }
-.container {
+.container, .intro {
     margin: 0 auto;
     padding: 0 5em;
     max-width: 1000px;
     background-color: white;
 }
-.intro {
+.intro { 
+    padding-top: 1.5em;
+}
+
+.summary p {
     padding-bottom: 1em;
 }
-.intro p {
+
+.details {
+    padding-top: 1em;
     padding-bottom: 1em;
 }
-section, article {
+section {
     padding: .5em;
 }
 h1 {
@@ -40,14 +73,14 @@ em {
     font-style: italic;
 }
 .title {
-    padding-top: 1em;
+    /* padding-top: 1em; */
     font-weight: 600;
     font-size: 1.5em;
 }
 .subtitle {
     font-weight: 600;
     font-size: 1.2em;
-    padding-bottom: 1.5em;
+    /* padding-bottom: 1.5em; */
     text-align: center;
 }
 .speaker {
@@ -56,16 +89,19 @@ em {
     padding-bottom: .25em;
     text-transform: uppercase;
 }
-.scene {
-    padding: 1em 0;
+.chunk, .scene {
+    padding: .5em 0;
+}
+.scene, .chunk {
     max-width: 550px;
     margin: 0 auto;
 }
-.dialogue {
+.quote {
     margin: 0 auto;
     max-width: 300px;
 }
 .scene-minor {
     padding: 1em 0;
 }
+
 
