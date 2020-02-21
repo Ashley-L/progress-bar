@@ -3,6 +3,8 @@ let $title = document.querySelector('.title');
 let $barDiv = document.createElement("div");
 let $titleCopyDiv = document.createElement("div");
 let $progressDiv = document.createElement("div");
+let scrolledPxY = window.scrollY // shows scroll position, changes every time you scroll
+
 
 // CREATE THE DIV DYNAMICALLY
 
@@ -187,26 +189,42 @@ let $wordCount = document.body.textContent
 
 
  
-
-
+// height of progress bar
+let $barHeight = $barDiv.getBoundingClientRect().height
+console.log(`progress bar is ${$barHeight}px tall`)
 
 $links.forEach($a => {
   $a.addEventListener('click', event => {
+    
+    // Stops the default 'jumping' to id
     event.preventDefault();
     console.log('clicked')
 
-    let $clickedScene = $a.getAttribute('href') 
-    console.log(`Scroll to ${$clickedScene}`)
+    // Which scene are you clicking
+    let $clickedLink = $a.getAttribute('href') 
+    console.log(`Scroll to ${$clickedLink}`)
+
     // $scene1.scrollIntoView({ behavior:'smooth' })
     // $scene2.scrollIntoView({ behavior:'smooth' })
     // $scene3.scrollIntoView({ behavior:'smooth' })
     // $scene4.scrollIntoView({ behavior:'smooth' })
     // $whichScene.scrollIntoView({behavior: 'smooth'})
 
-    let $scrollTo = document.querySelector($clickedScene)
-    console.log($scrollTo) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! IT WORKS
+    // variable for scene you clicked/are trying to go to
+    let $clickedScene = document.querySelector($clickedLink)
+    console.log($clickedScene) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! IT WORKS
 
-    $scrollTo.scrollIntoView( {behavior: 'smooth'} )
+    // get height of scene title - progress bar height
+    let $adjustedScene = $clickedScene.getBoundingClientRect().top - $barHeight 
+    console.log(`Scene top scroll position is ${$adjustedScene}px`)
+
+    // $adjustedScene.scrollIntoView( {behavior: 'smooth'} )
+
+    // scroll to the position of the scene 
+    window.scrollTo({
+      left:0, 
+      top: $adjustedScene, 
+      behavior:'smooth'})
 
 
 
@@ -272,71 +290,3 @@ $links.forEach($a => {
 // window.addEventListener('scroll', event => { console.log('scroll') })
 // window.addEventListener('resize', event => { console.log('resize') })
 // window.addEventListener('hashchange', event => { console.log('hashchange') })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function findLinks(allLinks) {
-
-//   allLinks.forEach(a => {
-//     a.addEventListener('click', event => {
-//       event.preventDefault();
-//       console.log('clicked')
-
-      
-//       $whichScene = a.getAttribute('href')
-//       console.log(`Scroll to ${$whichScene}`)
-
-//       // if (true) {
-//       //   $whichScene.scrollIntoView(true);
-//       // } 
-
-//       // $whichScene.scrollIntoView({behaviour: 'smooth'})
-      
-//       // if (true) {
-//       //   $whichScene.scrollIntoView()
-//       // } else {
-        
-//       // }
-    
-
-
-//       // if each a is clicked, scroll to that href
-
-//       // $whichScene.scrollIntoView({behavior: 'smooth'})
-
-//       // $headings.forEach(h2 => {
-//       //   $whichScene.scrollIntoView({behavior: 'smooth'})
-//       // })
-
-//       // let $headingTop = 
-//       // let $headingTop = $links.getBoundingClientRect().top
-//       // console.log($headingTop)
-
-//       // let $topOfHeading = $headingTop.getBoundingClientRect().top
-//       // console.log($topOfHeading)
-  
-//       // let $goto = document.querySelector($topOfHeading)
-//       // console.log($goto)
-
-//       // $headings.scrollIntoView({behaviour: 'smooth'});
-//     })
-
-
-//   })
-// }
-// findLinks($links)
-
