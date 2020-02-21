@@ -104,4 +104,9 @@ em {
     padding: 1em 0;
 }
 
+.scene-title {
+    font-weight: 600;
+    padding: 1em 0;
+    font-size: 1.3em;
+}
 

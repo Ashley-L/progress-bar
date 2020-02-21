@@ -93,8 +93,8 @@ window.addEventListener('scroll', event => {
   let hasBeenScrolled = Math.round((scrolledPxY / (documentH - windowH)) * 100)
   // scrolled position relative to the scrollable amount
   // let hasBeenScrolled = (scrolledPxY / (documentH - windowH) * 100)
-  console.log(`Scroll position is ${scrolledPxY}`)
-  console.log(`You've scrolled through ${hasBeenScrolled}% of the page.`)
+  // console.log(`Scroll position is ${scrolledPxY}`)
+  // console.log(`You've scrolled through ${hasBeenScrolled}% of the page.`)
 
   $progressClass.style.width = `${hasBeenScrolled}%`
 
@@ -132,8 +132,211 @@ window.addEventListener('scroll', event => {
 
 
 })
+// 1186 words
+
+
+
+// WORD COUNT
+let $wordCount = document.body.textContent
+// console.log($wordCount)
 
 
 
 
+
+
+// Steps
+
+
+// 1. get all of the anchors
+  // add .slide-from class to each of the anchors
+  // querySelectorAll for the classes to get all of them
+  // forEach on each of the anchors --> check if it's clicked???
+
+// 2. Scroll heading into view
+  // Get heading
+  // Scroll heading into view on click
+
+// 2. Find the top of the heading relative to top of document
+// use getBoundingClientRect().top + window.scrollY ???? check MDN
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+
+  // let $nav = document.querySelector('nav')
+  let $a = document.querySelector('nav a')
+  var $links = document.querySelectorAll('.scroll-to')
+  // let $oneHeading = document.querySelector('.scene-title')
+  // var $headings = document.querySelectorAll('.scene-title')
+  // let $headingsTop = $headings.getBoundingClientRect().top
+
+
+// window.addEventListener('scroll', event => { console.log('scroll') })
+// window.addEventListener('resize', event => { console.log('resize') })
+// window.addEventListener('hashchange', event => { console.log('hashchange') })
+
+    // $headings.forEach(h2 => {
+    //   $headingTop = h2.getBoundingClientRect().top
+    //   // + window.scrollY
+    //   console.log($headingTop)
+    // })
+
+// let $scene1 = document.querySelector('#scene1')
+// let $scene2 = document.querySelector('#scene2')
+// let $scene3 = document.querySelector('#scene3')
+// let $scene4 = document.querySelector('#scene4')
+
+
+
+ 
+
+
+
+$links.forEach($a => {
+  $a.addEventListener('click', event => {
+    event.preventDefault();
+    console.log('clicked')
+
+    let $clickedScene = $a.getAttribute('href') 
+    console.log(`Scroll to ${$clickedScene}`)
+    // $scene1.scrollIntoView({ behavior:'smooth' })
+    // $scene2.scrollIntoView({ behavior:'smooth' })
+    // $scene3.scrollIntoView({ behavior:'smooth' })
+    // $scene4.scrollIntoView({ behavior:'smooth' })
+    // $whichScene.scrollIntoView({behavior: 'smooth'})
+
+    let $scrollTo = document.querySelector($clickedScene)
+    console.log($scrollTo) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! IT WORKS
+
+    $scrollTo.scrollIntoView( {behavior: 'smooth'} )
+
+
+
+
+
+  })
+
+})
+
+// scroll position of page should equal scroll position of heading on click
+
+
+
+
+
+
+
+// // - Can I select an element by id?
+// let $section = document.querySelector('#javascript')
+// ​
+// // - Can I confirm an element exists?
+// if ($section) {
+//   // Yes, an element was found
+//   console.log('found')
+// } else {
+//   // No, an element was NOT found
+//   console.log('not found')
+// }
+// ​
+// // - How far from the top of the document is an element?
+// $section.offsetTop
+// ​
+// // - How far from the top of the viewport is an element?
+// $section.getBoundingClientRect().top
+// ​
+// // - How tall is the document?
+// document.documentElement.scrollHeight
+// ​
+// // - How tall is the window?
+// document.documentElement.clientHeight
+// ​
+// // - How much has the window currently been scrolled?
+// window.scrollY
+// ​
+// // - Can I scroll to a particular element?
+// $section.scrollIntoView({ behavior:'smooth' })
+// ​
+// // - Can I scroll to a particular px position?
+// window.scrollTo({left:0, top:0, behavior:'smooth'})
+// ​
+// // - What is the height(s) of any obstruction(s)?
+// $section.getBoundingClientRect().height
+// ​
+// // - Can I capture when an element has triggered a `click` event?
+// let $link = document.querySelector('.scroll-to')
+// $link.addEventListener('click', event => { console.log('click') })
+// ​
+// // - Where is the anchor pointing?
+// $link.getAttribute('href')
+// ​
+// ​
+// // - Can I capture window events, like: `scroll`, `resize`, `hashchange`?
+// window.addEventListener('scroll', event => { console.log('scroll') })
+// window.addEventListener('resize', event => { console.log('resize') })
+// window.addEventListener('hashchange', event => { console.log('hashchange') })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function findLinks(allLinks) {
+
+//   allLinks.forEach(a => {
+//     a.addEventListener('click', event => {
+//       event.preventDefault();
+//       console.log('clicked')
+
+      
+//       $whichScene = a.getAttribute('href')
+//       console.log(`Scroll to ${$whichScene}`)
+
+//       // if (true) {
+//       //   $whichScene.scrollIntoView(true);
+//       // } 
+
+//       // $whichScene.scrollIntoView({behaviour: 'smooth'})
+      
+//       // if (true) {
+//       //   $whichScene.scrollIntoView()
+//       // } else {
+        
+//       // }
+    
+
+
+//       // if each a is clicked, scroll to that href
+
+//       // $whichScene.scrollIntoView({behavior: 'smooth'})
+
+//       // $headings.forEach(h2 => {
+//       //   $whichScene.scrollIntoView({behavior: 'smooth'})
+//       // })
+
+//       // let $headingTop = 
+//       // let $headingTop = $links.getBoundingClientRect().top
+//       // console.log($headingTop)
+
+//       // let $topOfHeading = $headingTop.getBoundingClientRect().top
+//       // console.log($topOfHeading)
+  
+//       // let $goto = document.querySelector($topOfHeading)
+//       // console.log($goto)
+
+//       // $headings.scrollIntoView({behaviour: 'smooth'});
+//     })
+
+
+//   })
+// }
+// findLinks($links)
 
