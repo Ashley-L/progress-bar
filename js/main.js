@@ -3,10 +3,10 @@ let $title = document.querySelector('.title');
 let $barDiv = document.createElement("div");
 let $titleCopyDiv = document.createElement("div");
 let $progressDiv = document.createElement("div");
-let scrolledPxY = window.scrollY // shows scroll position, changes every time you scroll
 
-
-// CREATE THE DIV DYNAMICALLY
+////////////////////////////////
+// CREATE THE DIV DYNAMICALLY // 
+////////////////////////////////
 
 // BAR DIV
 $barDiv.setAttribute('class', 'bar');
@@ -46,6 +46,7 @@ $titleCopyClass.style.fontSize = '1em';
 $titleCopyClass.style.opacity = '0';
 $titleCopyClass.style.zIndex = '9999';
 
+// mouseover/mouseout on individual title div
 // $titleCopyDiv.addEventListener('mouseover', event => {
 //   $barClass.style.backgroundColor = 'rgb(211, 125, 12)';
 //   event.stopPropagation();
@@ -66,6 +67,7 @@ $progressClass.style.backgroundColor = 'rgb(0, 95, 139)';
 $progressClass.style.width = '0%';
 $progressClass.style.height = '100%';
 
+// mouseover/mouseout on individual progress div
 // $progressDiv.addEventListener('mouseover', event => {
 //   $barClass.style.backgroundColor = 'rgb(211, 125, 12)';
 //   event.stopPropagation();
@@ -76,7 +78,9 @@ $progressClass.style.height = '100%';
 // })
 
 
-
+////////////////////////////////
+// MAKE THE PROGRESS BAR WORK // 
+////////////////////////////////
 
 // SCROLL LISTENER
 window.addEventListener('scroll', event => {   
@@ -134,18 +138,37 @@ window.addEventListener('scroll', event => {
 
 
 })
-// 1186 words
+
+
+//////////////////////////
+// WORD COUNT/READ TIME //
+//////////////////////////
+
+var $fullText = document.body.textContent
+// var $spaces = ($fullText.split(" ").length);
+var $totalWords = ($fullText.match(/([\s]+)/g).length);
+// should add + 1 to length but it's still wrong(?)
+// https://regex101.com/
+// \s = any whitespace character
+// /g = g modifier, global --> all modifiers
+// + = 1+ times
+console.log($totalWords)
+
+let $wpm = 300
+let $time = Math.round($totalWords / $wpm) 
+console.log($time)
+
+let $readTime = document.querySelector('.read-time')
+$readTime.innerText = `Read time: ${$time} minutes`
 
 
 
-// WORD COUNT
-let $wordCount = document.body.textContent
-// console.log($wordCount)
 
 
 
-
-
+////////////////////////
+// SCROLL TO SECTIONS // 
+////////////////////////
 
 // Steps
 
@@ -159,48 +182,38 @@ let $wordCount = document.body.textContent
   // Get heading
   // Scroll heading into view on click
 
-// 2. Find the top of the heading relative to top of document
+// 3. Find the top of the heading relative to top of document
 // use getBoundingClientRect().top + window.scrollY ???? check MDN
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
 
-  // let $nav = document.querySelector('nav')
-  let $a = document.querySelector('nav a')
-  var $links = document.querySelectorAll('.scroll-to')
-  // let $oneHeading = document.querySelector('.scene-title')
+let $a = document.querySelector('nav a')
+let $links = document.querySelectorAll('.scroll-to')
+let $barHeight = $barDiv.getBoundingClientRect().height
+
   // var $headings = document.querySelectorAll('.scene-title')
-  // let $headingsTop = $headings.getBoundingClientRect().top
-
-
-// window.addEventListener('scroll', event => { console.log('scroll') })
-// window.addEventListener('resize', event => { console.log('resize') })
-// window.addEventListener('hashchange', event => { console.log('hashchange') })
-
     // $headings.forEach(h2 => {
     //   $headingTop = h2.getBoundingClientRect().top
     //   // + window.scrollY
     //   console.log($headingTop)
     // })
 
-// let $scene1 = document.querySelector('#scene1')
-// let $scene2 = document.querySelector('#scene2')
-// let $scene3 = document.querySelector('#scene3')
-// let $scene4 = document.querySelector('#scene4')
+    // let $scene1 = document.querySelector('#scene1')
+    // let $scene2 = document.querySelector('#scene2')
+    // let $scene3 = document.querySelector('#scene3')
+    // let $scene4 = document.querySelector('#scene4')
 
 
-
- 
-// height of progress bar
-let $barHeight = $barDiv.getBoundingClientRect().height
-console.log(`progress bar is ${$barHeight}px tall`)
 
 $links.forEach($a => {
   $a.addEventListener('click', event => {
-    
     // Stops the default 'jumping' to id
+    // allows you to put the smooth scroll in
     event.preventDefault();
+
+    // listens for a click
     console.log('clicked')
 
-    // Which scene are you clicking
+    // Which link are you clicking
     let $clickedLink = $a.getAttribute('href') 
     console.log(`Scroll to ${$clickedLink}`)
 
@@ -210,35 +223,36 @@ $links.forEach($a => {
     // $scene4.scrollIntoView({ behavior:'smooth' })
     // $whichScene.scrollIntoView({behavior: 'smooth'})
 
-    // variable for scene you clicked/are trying to go to
+    // variable for scene/link you clicked/are trying to go to
+    // querySelector to take you to that clicked link
     let $clickedScene = document.querySelector($clickedLink)
     console.log($clickedScene) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! IT WORKS
 
-    // get height of scene title - progress bar height
-    let $adjustedScene = $clickedScene.getBoundingClientRect().top - $barHeight 
-    console.log(`Scene top scroll position is ${$adjustedScene}px`)
+    // get height of scene title - progress bar height + window.scrollY
+    // when you add pixels, you increase scroll position
+    // so content moves further up the page
+    // which is why you have to subtract the bar height rather than add
+    // to push the section down into view
+    // then add window.scrollY to give you the scrolled position relative to the top of the doc
+    // so scroll position will always be the same and go to the same position
+    // no matter where you are in the page
+    // since getBoundigClientRect() gives you the position relative to the window
+    let $scenePosition = ($clickedScene.getBoundingClientRect().top - $barHeight) + window.scrollY
+    // console.log(`progress bar is ${$barHeight}px`)
+    console.log(`Scene top scroll position is ${$scenePosition}px`)
 
-    // $adjustedScene.scrollIntoView( {behavior: 'smooth'} )
+    // $scenePosition.scrollIntoView( {behavior: 'smooth'} )
 
     // scroll to the position of the scene 
     window.scrollTo({
       left:0, 
-      top: $adjustedScene, 
-      behavior:'smooth'})
-
-
-
-
+      top: $scenePosition, 
+      behavior:'smooth'
+    })
 
   })
 
 })
-
-// scroll position of page should equal scroll position of heading on click
-
-
-
-
 
 
 
